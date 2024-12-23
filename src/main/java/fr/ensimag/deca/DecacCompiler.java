@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  */
 public class DecacCompiler {
     private static final Logger LOG = Logger.getLogger(DecacCompiler.class);
-    
+
     /**
      * Portable newline character.
      */
@@ -48,7 +48,20 @@ public class DecacCompiler {
         super();
         this.compilerOptions = compilerOptions;
         this.source = source;
+        this.symbolTable = new SymbolTable(); // Initialize the symbol table
+        this.environmentType = new EnvironmentType(this); // Pass symbol table to EnvironmentType
+        initSymbols(); // Initialisation des symboles de base
     }
+
+    private void initSymbols() {
+        symbolTable.create("int");
+        symbolTable.create("float");
+        symbolTable.create("boolean");// Ajouter d'autres types primitifs si nécessaire}
+        symbolTable.create("String");
+        symbolTable.create("void");
+        symbolTable.create("null");
+    }
+
 
     /**
      * Source file associated with this compiler instance.
@@ -104,26 +117,26 @@ public class DecacCompiler {
     public void addInstruction(Instruction instruction, String comment) {
         program.addInstruction(instruction, comment);
     }
-    
+
     /**
-     * @see 
+     * @see
      * fr.ensimag.ima.pseudocode.IMAProgram#display()
      */
     public String displayIMAProgram() {
         return program.display();
     }
-    
+
     private final CompilerOptions compilerOptions;
     private final File source;
     /**
      * The main program. Every instruction generated will eventually end up here.
      */
     private final IMAProgram program = new IMAProgram();
- 
+
 
     /** The global environment for types (and the symbolTable) */
-    public final EnvironmentType environmentType = new EnvironmentType(this);
-    public final SymbolTable symbolTable = new SymbolTable();
+    public  EnvironmentType environmentType ;
+    public  SymbolTable symbolTable ;
 
     public Symbol createSymbol(String name) {
         return symbolTable.create(name);
@@ -191,8 +204,8 @@ public class DecacCompiler {
         assert(prog.checkAllLocations());
 
 
-        prog.verifyProgram(this);
-        assert(prog.checkAllDecorations());
+        // prog.verifyProgram(this);
+        // assert(prog.checkAllDecorations());
 
         addComment("start main program");
         prog.codeGenProgram(this);

@@ -72,9 +72,8 @@ public class CompilerOptions {
                 default:
                     if(arg.endsWith(".deca")) {
                         File file = new File(arg); // Crée un objet File
-                        if (file.exists() && file.isFile()) {
+                        if (file.exists()) {
                             sourceFiles.add(file); // Ajoute le fichier à la liste s'il existe
-                            System.out.println("Fichier ajouté : " + file.getAbsolutePath());
                         } else {
                             System.out.println("Le fichier " + arg+ " n'existe pas ou n'est pas un fichier valide.");
                         }
@@ -109,7 +108,7 @@ public class CompilerOptions {
             logger.info("Java assertions disabled");
         }
 
-        throw new UnsupportedOperationException("not yet implemented");
+
     }
 
     protected void displayUsage() {

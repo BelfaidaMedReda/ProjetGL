@@ -10,6 +10,7 @@ options {
 }
 
 @members {
+
 }
 
 // Mots réservés
@@ -102,5 +103,5 @@ FILENAME: (LETTER | DIGIT | '.' | '-' | '_')+;
 INCLUDE: '#include' [ \t]* '"' FILENAME '"';
 
 DEFAULT : .{
-    throw new DecaRecognitionException(this, getInputStream(), "The token is not recognized");
+    System.out.println("Token not recognized");
 };

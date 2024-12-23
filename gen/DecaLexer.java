@@ -109,6 +109,7 @@ public class DecaLexer extends AbstractDecaLexer {
 
 
 
+
 	public DecaLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
@@ -156,7 +157,7 @@ public class DecaLexer extends AbstractDecaLexer {
 		switch (actionIndex) {
 		case 1:
 
-			    throw new DecaRecognitionException(this, getInputStream(), "The token is not recognized");
+			    System.out.println("Token not recognized");
 
 			break;
 		}

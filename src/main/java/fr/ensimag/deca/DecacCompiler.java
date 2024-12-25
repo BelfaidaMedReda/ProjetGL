@@ -50,18 +50,18 @@ public class DecacCompiler {
         this.source = source;
         this.symbolTable = new SymbolTable(); // Initialize the symbol table
         this.environmentType = new EnvironmentType(this); // Pass symbol table to EnvironmentType
-        initSymbols(); // Initialisation des symboles de base
+        //initSymbols(); // Initialisation des symboles de base
     }
-
+    /*
     private void initSymbols() {
         symbolTable.create("int");
         symbolTable.create("float");
-        symbolTable.create("boolean");// Ajouter d'autres types primitifs si nécessaire}
+        symbolTable.create("boolean");
         symbolTable.create("String");
         symbolTable.create("void");
         symbolTable.create("null");
     }
-
+    */
 
     /**
      * Source file associated with this compiler instance.

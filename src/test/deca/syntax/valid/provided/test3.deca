@@ -1,0 +1,17 @@
+// Description:
+//    Programme minimaliste avec une instruction if-then-else.
+//
+// Resultats:
+//    5 est positif
+//
+// Historique:
+//    cree le 24/12/2024
+
+{
+    int x = 5;
+    if (x > 0) {
+        println(x + " est positif");
+    } else {
+        println(x + " est négatif ou zéro");
+    }
+}

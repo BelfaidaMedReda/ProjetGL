@@ -37,7 +37,7 @@ public class EnvironmentType {
 
         Symbol stringSymb = compiler.createSymbol("string");
         STRING = new StringType(stringSymb);
-        envTypes.put(booleanSymb, new TypeDefinition(BOOLEAN, Location.BUILTIN));
+        envTypes.put(booleanSymb, new TypeDefinition(STRING, Location.BUILTIN));
         
     }
 

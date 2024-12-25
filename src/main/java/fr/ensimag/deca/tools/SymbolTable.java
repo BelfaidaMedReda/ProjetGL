@@ -30,6 +30,11 @@ public class SymbolTable {
         return symbol;
     }
 
+    public boolean contains(String name) {
+        return map.containsKey(name);
+    }
+
+
     public static class Symbol {
         // Constructor is private, so that Symbol instances can only be created
         // through SymbolTable.create factory (which thus ensures uniqueness
@@ -46,6 +51,24 @@ public class SymbolTable {
         @Override
         public String toString() {
             return name;
+        }
+
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true; // Same reference, so they are equal
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false; // Null or different class, so not equal
+            }
+            Symbol other = (Symbol) obj; // Safe cast since the class matches
+            return name.equals(other.name); // Compare the names
+        }
+
+        @Override
+        public int hashCode() {
+            return name.hashCode(); // Use the hash code of the name
         }
 
         private String name;

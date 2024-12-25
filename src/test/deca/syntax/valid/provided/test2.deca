@@ -1,0 +1,14 @@
+// Description:
+//    Programme minimaliste avec une déclaration de variable et une opération arithmétique.
+//
+// Resultats:
+//    5
+//
+// Historique:
+//    cree le 24/12/2024
+
+{
+    int x = 2;
+    println(x); // Devrait afficher 2
+}
+

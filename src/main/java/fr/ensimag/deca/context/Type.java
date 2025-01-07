@@ -80,4 +80,68 @@ public abstract class Type {
         throw new ContextualError(errorMessage, l);
     }
 
+    public boolean isSubTypeOf(Type otherType) {
+        if(otherType.isNull()){
+            return isNull();
+        }
+        if(otherType instanceof ClassType && this instanceof ClassType){
+            return ((ClassType) this).isSubClassOf(((ClassType) otherType));
+        }
+        return false;
+    }
+
+    public boolean isUnaryOpSupported(String operator) {
+        // Vérification si l'opérateur est supporté
+        if (!operator.equals("-") && !operator.equals("!")) {
+            return false; // Opérateur non supporté
+        }
+
+        // Traitement pour l'opérateur "-"
+        if (operator.equals("-")) {
+            return (isInt() || isFloat());
+        }
+
+        // Traitement pour l'opérateur "!"
+        if (operator.equals("!")) {
+            return isBoolean();
+        }
+
+        // Par défaut, retourne false (même si normalement on ne devrait pas arriver ici)
+        return false;
+    }
+
+    public boolean isBinaryOpSupported(String operator, Type otherType) {
+        // Vérification des opérateurs arithmétiques : +, -, *, /
+        if (operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/")) {
+            return (isInt() || isFloat()) &&
+                    (otherType.isInt() || otherType.isFloat());
+        }
+
+        // Vérification pour l'opérateur mod : %
+        if (operator.equals("%")) {
+            return (isInt()) && (otherType.isInt());
+        }
+
+        // Vérification des opérateurs de comparaison : ==, !=, <, >, <=, >=
+        if (operator.equals("==") || operator.equals("!=") || operator.equals("<") || operator.equals(">") ||
+                operator.equals("<=") || operator.equals(">=")) {
+            if (isInt() || isFloat()) {
+                return otherType.isInt() || otherType.isFloat();
+            } else if (operator.equals("==") || operator.equals("!=")) {
+                return (isClassOrNull()) && (otherType.isClassOrNull());
+            }
+        }
+
+        // Vérification des opérateurs logiques : &&, ||, ==, !=
+        if (operator.equals("&&") || operator.equals("||") || operator.equals("==") || operator.equals("!=")) {
+            return (isBoolean()) && (otherType.isBoolean());
+        }
+
+        // Si aucun cas ne correspond, l'opération n'est pas supportée
+        return false;
+    }
+
+
+
+
 }

@@ -39,7 +39,14 @@ public abstract class AbstractPrint extends AbstractInst {
     protected void verifyInst(DecacCompiler compiler, EnvironmentExp localEnv,
             ClassDefinition currentClass, Type returnType)
             throws ContextualError {
-        throw new UnsupportedOperationException("not yet implemented");
+        // Le Parseur parvient à différencier entre Print et Println
+        // Pas besoin de vérifier
+        for(AbstractExpr elem: arguments.getList()){
+            Type type = elem.verifyExpr(compiler, localEnv, currentClass);
+            if(!type.isInt() && !type.isFloat() && !type.isString()){
+                throw new ContextualError("Condition 3.31 is violated",getLocation());
+            }
+        }
     }
 
     @Override

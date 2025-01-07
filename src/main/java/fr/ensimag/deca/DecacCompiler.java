@@ -204,7 +204,7 @@ public class DecacCompiler {
         assert(prog.checkAllLocations());
 
 
-        // prog.verifyProgram(this);
+        prog.verifyProgram(this);
         // assert(prog.checkAllDecorations());
 
         addComment("start main program");

@@ -103,5 +103,7 @@ FILENAME: (LETTER | DIGIT | '.' | '-' | '_')+;
 INCLUDE: '#include' [ \t]* '"' FILENAME '"';
 
 DEFAULT : .{
-    System.out.println("Token not recognized");
+   if(1>0){
+        throw new DecaRecognitionException(this, (IntStream) _input);
+   }
 };

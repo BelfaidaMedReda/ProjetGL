@@ -1,0 +1,5 @@
+boolean a = true;
+int b = 5;
+float c = 2.5;
+boolean result = (a && (b + c) < 10) || (false && b); // Erreur : opération logique sur des types incompatibles
+println(result);

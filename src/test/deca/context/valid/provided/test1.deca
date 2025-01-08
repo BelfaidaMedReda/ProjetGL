@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste utilisant des expressions binaires et des opérations booléennes.
+//
+// Resultats:
+//    true
+//
+// Historique:
+//    cree le 24/12/2024
+
+{
+    boolean b = (3 > 2) && (2 < 4);
+    println(b); // Devrait afficher true
+}

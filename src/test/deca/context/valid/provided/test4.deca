@@ -1,0 +1,13 @@
+// Description:
+//    Programme minimaliste avec la lecture d'entiers.
+//
+// Resultats:
+//    Affiche l'entier saisi
+//
+// Historique:
+//    cree le 24/12/2024
+
+{
+    int x = readInt();
+    println(x); // Devrait afficher l'entier saisi par l'utilisateur
+}

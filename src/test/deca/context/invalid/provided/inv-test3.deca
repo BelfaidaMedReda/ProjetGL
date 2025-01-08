@@ -1,0 +1,3 @@
+for (int i = 0; j < 10; i++) { // Erreur : la variable `j` n'est pas initialisée
+    println(i);
+}

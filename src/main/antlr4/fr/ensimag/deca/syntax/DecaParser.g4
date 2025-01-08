@@ -39,9 +39,6 @@ options {
 
 prog returns[AbstractProgram tree]
     : list_classes main EOF {
-            if($list_classes.tree==null){
-                $list_classes.tree = new ListDeclClass();
-            }
             assert($list_classes.tree != null);
             assert($main.tree != null);
             $tree = new Program($list_classes.tree, $main.tree);

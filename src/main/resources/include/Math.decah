@@ -62,9 +62,9 @@ class Math {
         }
         // Improved guesses for sqrt based on the range of x
         float guess;
-        if (x >= 0.5 and x <= 1) {              // For values close to 1
+        if (x >= 0.5 && x <= 1) {              // For values close to 1
             guess = 0.5 * x;
-        } else if (x < 2.1 and x > 1) {       // For small positive values
+        } else if (x < 2.1 && x > 1) {       // For small positive values
             guess = 1.4;
         } else if (x < 0.5) {                    // General case for intermediate values
             guess = x;
@@ -96,7 +96,7 @@ class Math {
         }
     }
 
-    float readjustAngle(float a) { //  readjusts the angle to be between -π and π
+    float _readjustAngle(float a) { //  readjusts the angle to be between -π && π
         float pi = 3.14159265358979323846264;
         float twoPi = 6.283185307179586476925286; // 2π
 
@@ -115,19 +115,19 @@ class Math {
         float sum = f;
         float term;
         int n = 1;
-        int nbTerms = 10;
+        int nbTerms = 6;
 
-        if (f > 2.356194490192345) {  //  for f > 3π/4, use sin(f) = -sin(f - π)
+        if (f >= 2.356194490192345) {  //  for f > 3π/4, use sin(f) = -sin(f - π)
             
             float res = -sin(f - 3.14159265358979323846264);
             return res;
 
-        } else if(f > 0.78539816339744830961 and f < 2.356194490192345) {  //  for pi/4 < f < 3π/4, use sin(f) = cos(f - pi/2)
+        } else if(f > 0.78539816339744830961 && f < 2.356194490192345) {  //  for pi/4 < f < 3π/4, use sin(f) = cos(f - pi/2)
 
             float res = cos(f - 1.570796326794896619231321691639);
             return res;
             
-        } else if (f >= 0 and f <= 0.78539816339744830961566084581988) {  //  for 0 <= f <= π/4, use Taylor Series centered in 0  
+        } else if (f >= 0 && f <= 0.78539816339744830961566084581988) {  //  for 0 <= f <= π/4, use Taylor Series centered in 0  
             
             while (n <= nbTerms) {
             term = _power(f, 2*n + 1) / _factorial(2*n + 1);
@@ -140,17 +140,17 @@ class Math {
             }
             return sum;
 
-        } else if (f < -2.356194490192345) {  //  for f < -3π/4, use sin(f) = -sin(f + π)
+        } else if (f <= -2.356194490192345) {  //  for f < -3π/4, use sin(f) = -sin(f + π)
             
             float res = -sin(f + 3.14159265358979323846264);
             return res;
 
-        } else if(f < -0.78539816339744830961 and f > -2.356194490192345) {  //  for -pi/4 > f > -3π/4, use sin(f) = -cos(f + pi/2)
+        } else if(f < -0.78539816339744830961 && f > -2.356194490192345) {  //  for -pi/4 > f > -3π/4, use sin(f) = -cos(f + pi/2)
 
             float res = -cos(f + 1.570796326794896619231321691639);
             return res;
             
-        } else if (f < 0 and f >= -0.78539816339744830961566084581988) {  //  for 0 > f >= -π/4, sin(f) = -sin(-f)
+        } else if (f < 0 && f >= -0.78539816339744830961566084581988) {  //  for 0 > f >= -π/4, sin(f) = -sin(-f)
             
             float res = -sin(-f);
             return res;
@@ -165,7 +165,7 @@ class Math {
         float sum = 1;
         float term;
         int n = 1;
-        int nbTerms = 10;
+        int nbTerms = 6;
 
 
         if (f > 2.356194490192345) {  //  for f > 3π/4, use cos(f) = -cos(f - π)
@@ -173,12 +173,12 @@ class Math {
             float res = -cos(f - 3.14159265358979323846264);
             return res;
 
-        } else if(f > 0.78539816339744830961 and f < 2.356194490192345) {  //  for pi/4 < f < 3π/4, use cos(f) = -sin(f - pi/2)
+        } else if(f > 0.78539816339744830961 && f < 2.356194490192345) {  //  for pi/4 < f < 3π/4, use cos(f) = -sin(f - pi/2)
 
             float res = -sin(f - 1.570796326794896619231321691639);
             return res;
             
-        } else if (f >= 0 and f <= 0.78539816339744830961566084581988) {  //  for 0 <= f <= π/4, use Taylor Series centered in 0  
+        } else if (f >= 0 && f <= 0.78539816339744830961566084581988) {  //  for 0 <= f <= π/4, use Taylor Series centered in 0  
             
             while (n <= nbTerms) {
                 term = _power(f, 2*n) / _factorial(2*n);
@@ -196,14 +196,14 @@ class Math {
             float res = -cos(f + 3.14159265358979323846264);
             return res;
 
-        } else if(f < -0.78539816339744830961 and f > -2.356194490192345) {  //  for -pi/4 > f > -3π/4, use cos(f) = sin(f + pi/2)
+        } else if(f < -0.78539816339744830961 && f > -2.356194490192345) {  //  for -pi/4 > f > -3π/4, use cos(f) = sin(f + pi/2)
 
             float res = sin(f + 1.570796326794896619231321691639);
             return res;
             
-        } else if (f < 0 and f >= -0.78539816339744830961566084581988) {  //  for 0 > f >= -π/4, cos(f) = cos(-f)
+        } else if (f < 0 && f >= -0.78539816339744830961566084581988) {  //  for 0 > f >= -π/4, cos(f) = cos(-f)
             
-            float res = -cos(-f);
+            float res = cos(-f);
             return res;
 
         }
@@ -212,16 +212,16 @@ class Math {
 
     float asin(float f) {
 
-        if (f > 1 or f < -1) {
-            return NULL; // not defined, fix NULL
+        if (f > 1 || f < -1) {
+            return -1000; //  
         } else {
             
-            if (f > -0.6 and f < 0.6) {   //  for small values of f, use Taylor series
+            if (f > -0.6 && f < 0.6) {   //  for small values of f, use Taylor series
                 if (f < 0) {
                     float sum = -1*f;
                     float term;
                     int n = 1;
-                    int nbTerms = 10;
+                    int nbTerms = 12;
 
                     while (n <= nbTerms) {  //  controls the precision
                         term = _power(f, 2*n + 1);
@@ -236,7 +236,7 @@ class Math {
                 float sum = f;
                 float term;
                 int n = 1;
-                int nbTerms = 10;
+                int nbTerms = 12;
 
                 while (n <= nbTerms) {  //  controls the precision
                     term = _power(f, 2*n + 1);
@@ -290,7 +290,7 @@ class Math {
                 float sum = x; // First term in the series
                 float term;
                 int n = 1;
-                int nbTerms = 10; // Number of terms to control precision
+                int nbTerms = 12; // Number of terms to control precision
 
                 while (n <= nbTerms) {
                     term = power(x, 2 * n + 1) / (2 * n + 1);
@@ -313,11 +313,11 @@ class Math {
                 float sum = 1.5707963; // π/2
                 float term;
                 int n = 0;
-                int nbTerms = 10; // Number of terms to control precision
+                int nbTerms = 6; // Number of terms to control precision
 
                 while (n < nbTerms) {
                     int denominator = 2 * n + 1;
-                    term = 1 / (denominator * power(x, denominator));
+                    term = 1 / (denominator * power(f, denominator));
 
                     if (n % 2 == 0) {
                         sum = sum - term; // Subtract for even terms
@@ -341,9 +341,95 @@ class Math {
         }
     
     }
-    float ulp(float f) {
-        println("ulp(f) not yet implemented");
+        // Implementação de float para int bits
+    int _floatToIntBits(float x) {
+        // Variáveis auxiliares para os componentes do número de ponto flutuante
+        int sign;
+        int exponent;
+        int mantissa;
+
+        if (x == 0) {
+            return 0; // Representação de 0 em bits
+        }
+
+        // Determinar o sinal
+        if (x < 0) {
+            sign = 1;
+            x = _abs(x); // Trabalhar apenas com o valor absoluto
+        } else {
+            sign = 0;
+        }
+
+        // Determinar o expoente e a mantissa
+        exponent = 127; // Valor inicial do expoente no formato IEEE 754
+        while (x >= 2.0) {
+            x = x / 2.0;
+            exponent = exponent + 1;
+        }
+        while (x < 1.0) {
+            x = x * 2.0;
+            exponent = exponent - 1;
+        }
+
+        // Remover o bit implícito "1" e calcular a mantissa
+        x = x - 1.0;
+        mantissa = 0;
+        for (int i = 0; i < 23; i = i + 1) {
+            x = x * 2.0;
+            if (x >= 1.0) {
+                mantissa = mantissa | (1 << (22 - i));
+                x = x - 1.0;
+            }
+        }
+
+        // Combinar os componentes para formar o número final em bits
+        return (sign << 31) | (exponent << 23) | mantissa;
     }
+
+    // Implementação de int bits para float
+    float _intBitsToFloat(int bits) {
+        if (bits == 0) {
+            return 0.0; // Representação de 0
+        }
+
+        // Extrair os componentes do número de ponto flutuante
+        int sign = (bits >> 31) & 1;
+        int exponent = (bits >> 23) & 0xFF;
+        int mantissa = bits & 0x7FFFFF;
+
+        // Reconstruir o número em ponto flutuante
+        float result = 1.0; // Inclui o bit implícito "1"
+        for (int i = 0; i < 23; i = i + 1) {
+            if ((mantissa & (1 << (22 - i))) != 0) {
+                result = result + _power(2.0, -(i + 1));
+            }
+        }
+
+        result = result * _power(2.0, exponent - 127); // Aplicar o expoente
+
+        // Aplicar o sinal
+        if (sign == 1) {
+            result = -result;
+        }
+
+        return result;
+    }
+
+    // Método atualizado para calcular o ULP (Unidade de Menor Precisão)
+    float ulp(float x) {
+        if (x == 0) {
+            return 1.40129846e-45; // Valor mínimo para float (Float.MIN_VALUE em Java)
+        }
+
+        // Converter o número para bits e calcular o próximo valor
+        int bits = _floatToIntBits(x);
+        int nextBits = x > 0 ? bits + 1 : bits - 1;
+        float nextValue = _intBitsToFloat(nextBits);
+
+        // Retornar a diferença entre o valor atual e o próximo
+        return _abs(nextValue - x);
+    }
+    
 }
 
 
